@@ -33,12 +33,12 @@ describe('Auth routes', () => {
       const res = await request(app).post('/v1/auth/register').send(newUser).expect(httpStatus.CREATED);
 
       expect(res.body.user).not.toHaveProperty('password');
-      expect(res.body.user).toEqual({ id: expect.anything(), name: newUser.name, email: newUser.email, role: 'user' });
+      expect(res.body.user).toEqual({ id: expect.anything(), name: newUser.name, email: newUser.email, role: 'admin' });
 
       const dbUser = await User.findById(res.body.user.id);
       expect(dbUser).toBeDefined();
       expect(dbUser.password).not.toBe(newUser.password);
-      expect(dbUser).toMatchObject({ name: newUser.name, email: newUser.email, role: 'user' });
+      expect(dbUser).toMatchObject({ name: newUser.name, email: newUser.email, role: 'admin' });
 
       expect(res.body.tokens).toEqual({
         access: { token: expect.anything(), expires: expect.anything() },
