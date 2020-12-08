@@ -26,7 +26,7 @@ module.exports = router;
  * path:
  *  /auth/register:
  *    post:
- *      summary: Register as user
+ *      summary: Register as admin
  *      tags: [Auth]
  *      requestBody:
  *        required: true
