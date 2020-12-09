@@ -57,7 +57,7 @@ module.exports = {
     },
     from: envVars.EMAIL_FROM,
   },
-  iotmw: {
+  dh: {
     url: envVars.DH_HOST,
     auth: {
       login: envVars.DH_USERNAME,
