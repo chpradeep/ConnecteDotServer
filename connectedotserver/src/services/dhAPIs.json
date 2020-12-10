@@ -1,0 +1,274 @@
+[
+   {
+      "service":"Authentication",
+      "api":"login",
+      "token":"None",
+      "method":"POST",
+      "uri":"/token",
+      "description":"Creates and returns access and refresh tokens for the given user."
+   },
+   {
+      "service":"Authentication",
+      "api":"create",
+      "token":"ManageToken",
+      "method":"POST",
+      "uri":"/token/create",
+      "description":"Creates and returns access and refresh tokens for the given user and access rights."
+   },
+   {
+      "service":"Authentication",
+      "api":"refresh",
+      "token":"None",
+      "method":"POST",
+      "uri":"/token/refresh",
+      "description":"Creates and returns a new access token for the given refresh token."
+   },
+   {
+      "service":"ApiInfo",
+      "api":"get",
+      "token":"None",
+      "method":"GET",
+      "uri":"/info",
+      "description":"Gets meta-information of the current API."
+   },
+   {
+      "service":"ApiInfo",
+      "api":"getCluster",
+      "token":"None",
+      "method":"GET",
+      "uri":"/info/config/cluster",
+      "description":"Returns information about cluster (Kafka, Zookeeper etc.)"
+   },
+   {
+      "service":"Configuration",
+      "api":"get",
+      "token":"ManageConfiguration",
+      "method":"GET",
+      "uri":"/Configuration",
+      "description":"Returns requested property value."
+   },
+   {
+      "service":"Configuration",
+      "api":"put",
+      "token":"ManageConfiguration",
+      "method":"PUT",
+      "uri":"/Configuration",
+      "description":"Creates new or updates existing property."
+   },
+   {
+      "service":"Configuration",
+      "api":"delete",
+      "token":"ManageConfiguration",
+      "method":"DELETE",
+      "uri":"/Configuration",
+      "description":"Deletes a property."
+   },
+   {
+      "service":"Device",
+      "api":"list",
+      "token":"GetDevice",
+      "method":"GET",
+      "uri":"/device",
+      "description":"Gets list of devices."
+   },
+   {
+      "service":"Device",
+      "api":"get",
+      "token":"GetDevice",
+      "method":"GET",
+      "uri":"/device/{id}",
+      "description":"Gets information about device."
+   },
+   {
+      "service":"Device",
+      "api":"register",
+      "token":"RegisterDevice",
+      "method":"PUT",
+      "uri":"/device/{id}",
+      "description":"Registers or updates a device. For initial device registration, only &#39;name&#39; and &#39;deviceClass&#39; properties are required."
+   },
+   {
+      "service":"Device",
+      "api":"delete",
+      "token":"RegisterDevice",
+      "method":"DELETE",
+      "uri":"/device/{id}",
+      "description":"Deletes an existing device."
+   },
+   {
+      "service":"DeviceCommand",
+      "api":"query",
+      "token":"GetDeviceCommand",
+      "method":"GET",
+      "uri":"/device/{deviceId}/command",
+      "description":"Queries device commands."
+   },
+   {
+      "service":"DeviceCommand",
+      "api":"get",
+      "token":"GetDeviceCommand",
+      "method":"GET",
+      "uri":"/device/{deviceId}/command/{commandId}",
+      "description":"Gets information about device command."
+   },
+   {
+      "service":"DeviceCommand",
+      "api":"insert",
+      "token":"CreateDeviceCommand",
+      "method":"POST",
+      "uri":"/device/{deviceId}/command",
+      "description":"Creates new device command."
+   },
+   {
+      "service":"DeviceCommand",
+      "api":"update",
+      "token":"UpdateDeviceCommand",
+      "method":"PUT",
+      "uri":"/device/{deviceId}/command/{commandId}",
+      "description":"Updates an existing device command."
+   },
+   {
+      "service":"DeviceCommand",
+      "api":"poll",
+      "token":"GetDeviceCommand",
+      "method":"GET",
+      "uri":"/device/{deviceId}/command/poll",
+      "description":" Polls new device commands.  This method returns all device commands that were created after specified timestamp.  In the case when no commands were found, the method blocks until new command is received.If no commands are received within the waitTimeout period, the server returns an empty response.In this case, to continue polling, the client should repeat the call with the same timestamp value."
+   },
+   {
+      "service":"DeviceCommand",
+      "api":"wait",
+      "token":"GetDeviceCommand",
+      "method":"GET",
+      "uri":"/device/{deviceId}/command/{commandId}/poll",
+      "description":" Waits for a command to be processed.  This method returns a command only if it has been processed by a device.  In the case when command is not processed, the method blocks until device acknowledges command execution.If the command is not processed within the waitTimeout period,the server returns an empty response.In thiscase,tocontinue polling,the client should repeat the call."
+   },
+   {
+      "service":"DeviceCommand",
+      "api":"pollMany",
+      "token":"GetDeviceCommand",
+      "method":"GET",
+      "uri":"/device/command/poll",
+      "description":" Polls new device commands.  This method returns all device commands that were created after specified timestamp. In the case when no commands were found, the method blocks until new command is received. If no commands are received within the waitTimeout period, the server returns an empty response. In this case,tocontinue polling,the client should repeat the call with the same timestamp value."
+   },
+   {
+      "service":"Network",
+      "api":"list",
+      "token":"GetNetwork",
+      "method":"GET",
+      "uri":"/network",
+      "description":"Gets list of device networks. The result list is limited to networks the client has access to. "
+   },
+   {
+      "service":"Network",
+      "api":"get",
+      "token":"GetNetwork",
+      "method":"GET",
+      "uri":"/network/{id}",
+      "description":"Gets information about device network and its devices."
+   },
+   {
+      "service":"Network",
+      "api":"insert",
+      "token":"ManageNetwork",
+      "method":"POST",
+      "uri":"/network",
+      "description":"Creates new device network."
+   },
+   {
+      "service":"Network",
+      "api":"update",
+      "token":"ManageNetwork",
+      "method":"PUT",
+      "uri":"/network/{id}",
+      "description":"Updates an existing device network."
+   },
+   {
+      "service":"Network",
+      "api":"delete",
+      "token":"ManageNetwork",
+      "method":"DELETE",
+      "uri":"/network/{id}",
+      "description":"Deletes an existing device network."
+   },
+   {
+      "service":"User",
+      "api":"list",
+      "token":"ManageUser",
+      "method":"GET",
+      "uri":"/user",
+      "description":"Gets list of users."
+   },
+   {
+      "service":"User",
+      "api":"get",
+      "token":"GetCurrentUser",
+      "method":"GET",
+      "uri":"/user/{id}",
+      "description":"Gets information about user and its assigned networks. Only administrators are allowed to get information about any user.User-level accounts can only retrieve information about themselves."
+   },
+   {
+      "service":"User",
+      "api":"insert",
+      "token":"ManageUser",
+      "method":"POST",
+      "uri":"/user",
+      "description":"Creates new user."
+   },
+   {
+      "service":"User",
+      "api":"update",
+      "token":"UpdateCurrentUser",
+      "method":"PUT",
+      "uri":"/user/{id}",
+      "description":"Updates an existing user. Only administrators are allowed to update any property of any user. User-level accounts can only change their own password."
+   },
+   {
+      "service":"User",
+      "api":"delete",
+      "token":"ManageUser",
+      "method":"DELETE",
+      "uri":"/user/{id}",
+      "description":"Deletes an existing user."
+   },
+   {
+      "service":"User",
+      "api":"getCurrent",
+      "token":"ManageUser",
+      "method":"GET",
+      "uri":"/user/current",
+      "description":"Gets information about user/network association. Only administrators are allowed to get information about any user. User-level accounts can only retrieve information about themselves."
+   },
+   {
+      "service":"User",
+      "api":"updateCurrent",
+      "token":"ManageUser",
+      "method":"PUT",
+      "uri":"/user/current",
+      "description":"Updates the current user.Only administrators are allowed to update any property of any user. User-level accounts can only change their own password."
+   },
+   {
+      "service":"User",
+      "api":"getNetwork",
+      "token":"ManageUser",
+      "method":"GET",
+      "uri":"/user/{id}/network/{networkId}",
+      "description":"Gets information about user/network association."
+   },
+   {
+      "service":"User",
+      "api":"assignNetwork",
+      "token":"ManageUser",
+      "method":"PUT",
+      "uri":"/user/{id}/network/{networkId}",
+      "description":"Associates network with the user."
+   },
+   {
+      "service":"User",
+      "api":"unassignNetwork",
+      "token":"ManageUser",
+      "method":"DELETE",
+      "uri":"/user/{id}/network/{networkId}",
+      "description":"Removes association between network and user."
+   }
+]
