@@ -1,0 +1,41 @@
+POST http://localhost:3000/v1/users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZmNmNjdjZGI5MjQ0NzNjOGMyMTY3YzIiLCJpYXQiOjE2MDc2ODkwMDEsImV4cCI6MTYwNzY5MDgwMSwidHlwZSI6ImFjY2VzcyJ9.GJYmvK6yPR9QYGzsQIWrlBuKRbRFhQ8cNuJ6iPOKwy0
+
+{
+  "name": "test",
+  "email": "user@user.com",
+  "password": "password1",
+  "role":"user"
+}
+
+###
+GET http://localhost:3000/v1/users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZmNmNjdjZGI5MjQ0NzNjOGMyMTY3YzIiLCJpYXQiOjE2MDc2ODkwMDEsImV4cCI6MTYwNzY5MDgwMSwidHlwZSI6ImFjY2VzcyJ9.GJYmvK6yPR9QYGzsQIWrlBuKRbRFhQ8cNuJ6iPOKwy0
+
+###
+GET http://localhost:3000/v1/users/5fd3635c973c354cd0fba10d
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZmNmNjdjZGI5MjQ0NzNjOGMyMTY3YzIiLCJpYXQiOjE2MDc2ODkwMDEsImV4cCI6MTYwNzY5MDgwMSwidHlwZSI6ImFjY2VzcyJ9.GJYmvK6yPR9QYGzsQIWrlBuKRbRFhQ8cNuJ6iPOKwy0
+
+###
+PATCH  http://localhost:3000/v1/users/5fcf67cdb924473c8c2167c2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZmQzNjM1Yzk3M2MzNTRjZDBmYmExMGQiLCJpYXQiOjE2MDc2ODk0NjcsImV4cCI6MTYwNzY5MTI2NywidHlwZSI6ImFjY2VzcyJ9.EsgunTDn-RFRk6HdR_EKjKRTZBfswAhFATwzNlwTHhk
+
+{
+  "name": "fake namse",
+  "email": "fake@examples.com",
+  "password": "password1"
+}
+
+###
+GET http://localhost:3000/v1/users/5fd3635c973c354cd0fba10d
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZmNmNjdjZGI5MjQ0NzNjOGMyMTY3YzIiLCJpYXQiOjE2MDc2ODkwMDEsImV4cCI6MTYwNzY5MDgwMSwidHlwZSI6ImFjY2VzcyJ9.GJYmvK6yPR9QYGzsQIWrlBuKRbRFhQ8cNuJ6iPOKwy0
+
+###
+DELETE   http://localhost:3000/v1/users/5fcf1733d74ae65ef81495fd
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZmNmNjdjZGI5MjQ0NzNjOGMyMTY3YzIiLCJpYXQiOjE2MDc2ODk3MDYsImV4cCI6MTYwNzY5MTUwNiwidHlwZSI6ImFjY2VzcyJ9.ouxwaEBgtOyqOFuLVc4x9fba5LHeiyzzRw_nqLDu3hg

@@ -1,0 +1,50 @@
+POST http://localhost:3000/v1/auth/register
+Content-Type: application/json
+
+{
+  "name": "test",
+  "email": "test@test.com",
+  "password": "password1"
+}
+
+###
+POST http://localhost:3000/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@test.com",
+  "password": "password1"
+}
+
+###
+POST http://localhost:3000/v1/auth/logout
+Content-Type: application/json
+
+{
+  "refreshToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZmNmNjdjZGI5MjQ0NzNjOGMyMTY3YzIiLCJpYXQiOjE2MDc2ODc5OTMsImV4cCI6MTYxMDI3OTk5MywidHlwZSI6InJlZnJlc2gifQ.1c2YfeLVk0pt_DYtum6BLv9QdQPv2qUFD3gFuaAJoH8"
+}
+
+###
+POST http://localhost:3000/v1/auth/refresh-tokens
+Content-Type: application/json
+
+{
+  "refreshToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZmNmNjdjZGI5MjQ0NzNjOGMyMTY3YzIiLCJpYXQiOjE2MDc2ODgzNjAsImV4cCI6MTYxMDI4MDM2MCwidHlwZSI6InJlZnJlc2gifQ.lpYSQeY-nKF0Bs98ZGJJ0U248kDS3q9qeHT7hbbNzX4"
+}
+
+###
+POST http://localhost:3000/v1/auth/forgot-password
+Content-Type: application/json
+
+{
+  "email": "test@test.com"
+}
+
+###
+POST http://localhost:3000/v1/auth/reset-password
+  ?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZmNmNjdjZGI5MjQ0NzNjOGMyMTY3YzIiLCJpYXQiOjE2MDc2ODg4MTAsImV4cCI6MTYwNzY5MDYxMCwidHlwZSI6ImFjY2VzcyJ9.2jWjoZENLKyVDIgeOYU-zT7IwzhHV56YopBOLHwx3Ac
+Content-Type: application/json
+
+{
+  "password": "password1"
+}
