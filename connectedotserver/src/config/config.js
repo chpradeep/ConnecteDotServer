@@ -24,6 +24,7 @@ const envVarsSchema = Joi.object()
     DH_REFRESH: Joi.string().description('iot middleware refresh token'),
     DH_TOKEN_EXPIRATION: Joi.date().required().greater(Date.now()).description('iot middleware iot token expiry time'),
     DH_REFRESH_EXPIRATION: Joi.date().required().greater(Date.now()).description('iot middleware refresh token expiry time'),
+    MQTT_URL: Joi.string().required().description('mqtt broker url'),
   })
   .unknown();
 
@@ -67,5 +68,8 @@ module.exports = {
       login: envVars.DH_MASTER,
       password: envVars.DH_PASSWORD,
     },
+    token: envVars.DH_TOKEN,
+    refresh: envVars.DH_REFRESH,
+    mqttUrl: envVars.MQTT_URL,
   },
 };
