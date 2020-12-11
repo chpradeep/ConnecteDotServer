@@ -18,8 +18,12 @@ const envVarsSchema = Joi.object()
     SMTP_PASSWORD: Joi.string().description('password for email server'),
     EMAIL_FROM: Joi.string().description('the from field in the emails sent by the app'),
     DH_HOST: Joi.string().description('iot middleware server  api url'),
-    DH_USERNAME: Joi.string().description('username for iot middleware'),
+    DH_MASTER: Joi.string().description('username for iot middleware'),
     DH_PASSWORD: Joi.string().description('password for iot middleware'),
+    DH_TOKEN: Joi.string().description('iot middleware token for authentication'),
+    DH_REFRESH: Joi.string().description('iot middleware refresh token'),
+    DH_TOKEN_EXPIRATION: Joi.date().required().greater(Date.now()).description('iot middleware iot token expiry time'),
+    DH_REFRESH_EXPIRATION: Joi.date().required().greater(Date.now()).description('iot middleware refresh token expiry time'),
   })
   .unknown();
 
@@ -60,7 +64,7 @@ module.exports = {
   dh: {
     url: envVars.DH_HOST,
     auth: {
-      login: envVars.DH_USERNAME,
+      login: envVars.DH_MASTER,
       password: envVars.DH_PASSWORD,
     },
   },

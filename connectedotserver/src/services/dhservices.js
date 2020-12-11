@@ -158,4 +158,8 @@ client.on('error', function (err) {
   logger.error('Something went wrong on the client', err);
 });
 
+auth((result) => {
+  logger.info(result);
+});
+
 module.exports = { subscribe, unsubscribe, updateAllDeviceName, getMyDevices };
