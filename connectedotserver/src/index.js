@@ -3,6 +3,7 @@ const app = require('./app');
 const config = require('./config/config');
 const logger = require('./config/logger');
 require('./services/dhservices');
+require('./mqttClient/mqtt');
 
 let server;
 mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
