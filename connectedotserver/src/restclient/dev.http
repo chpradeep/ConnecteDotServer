@@ -1,0 +1,7 @@
+POST http://10.208.34.200:3000/v1/devs 
+Content-Type: application/json
+
+{
+    "password" : "password1",
+    "login":"ashwini"
+}

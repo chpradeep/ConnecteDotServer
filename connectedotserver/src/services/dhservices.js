@@ -4,7 +4,10 @@ const configs = require('../config/config');
 
 const Plans = {};
 const { dh } = configs;
-
+const headers = {
+  'Content-Type': 'application/json',
+  Authorization: `Bearer ${dh.token}`,
+};
 const client = new Client();
 
 client.registerMethod('login', `${dh.url}/token`, 'POST');
@@ -14,25 +17,33 @@ client.registerMethod('registerDevice', `${dh.url}/device/\${id}`, 'PUT');
 client.registerMethod('listDevices', `${dh.url}/device`, 'GET');
 client.registerMethod('unregisterDevice', `${dh.url}/device/\${id}`, 'DELETE');
 client.registerMethod('deletenetwork', `${dh.url}/network/\${id}`, 'DELETE');
+client.registerMethod('addDeveloper', `${dh.url}/user/`, 'POST');
+
+function createDeveloper(developer, next) {
+  const data = { ...developer, role: 1, status: 2, data: {} };
+  client.methods.addDeveloper({ data, headers }, function (result, res) {
+    next(result, res);
+  });
+}
 
 function auth(next) {
-  const req = client.methods.login({ data: dh.auth, headers: { 'Content-Type': 'application/json' } }, function (
-    data,
-    response
-  ) {
-    if (response.statusCode === 201) {
-      next({
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${data.accessToken}`,
-        },
-      });
-    } else if (response.statusCode === 404) {
-      logger.error('IoT middleware username and password not correct. Kindly update env file ', dh.auth);
-    } else {
-      logger.error('Unexprected eroor with iot middleware');
+  const req = client.methods.login(
+    { data: dh.auth, headers: { 'Content-Type': 'application/json' } },
+    function (data, response) {
+      if (response.statusCode === 201) {
+        next({
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${data.accessToken}`,
+          },
+        });
+      } else if (response.statusCode === 404) {
+        logger.error('IoT middleware username and password not correct. Kindly update env file ', dh.auth);
+      } else {
+        logger.error('Unexprected eroor with iot middleware');
+      }
     }
-  });
+  );
   req.on('error', (err) => {
     return { error: 401, message: err };
   });
@@ -162,4 +173,4 @@ auth((result) => {
   logger.info(result);
 });
 
-module.exports = { subscribe, unsubscribe, updateAllDeviceName, getMyDevices };
+module.exports = { subscribe, unsubscribe, updateAllDeviceName, getMyDevices, createDeveloper };
