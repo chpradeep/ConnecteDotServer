@@ -5,3 +5,21 @@ Content-Type: application/json
     "password" : "password1",
     "login":"ashwini"
 }
+
+###
+POST http://10.208.34.200:3000/v1/devs/auth
+Content-Type: application/json
+
+{
+    "password" : "password1",
+    "login":"ashwini"
+}
+
+###
+PUT http://10.208.34.200:3000/v1/devs/current
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7ImEiOlsyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTUsMTYsMTddLCJlIjoxNjA3OTUyNjA4ODk2LCJ0IjoxLCJ1Ijo0LCJuIjpbXSwiZHQiOlsiKiJdfX0.Jdl3cHa-BBoQNaIbFFQqaqiWLoiP8jqKBJSd2SQ-htc
+
+{
+    "password":"password1"
+}

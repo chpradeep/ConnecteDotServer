@@ -4,9 +4,8 @@ const configs = require('../config/config');
 
 const Plans = {};
 const { dh } = configs;
-const headers = {
+let headers = {
   'Content-Type': 'application/json',
-  Authorization: `Bearer ${dh.token}`,
 };
 const client = new Client();
 
@@ -18,10 +17,24 @@ client.registerMethod('listDevices', `${dh.url}/device`, 'GET');
 client.registerMethod('unregisterDevice', `${dh.url}/device/\${id}`, 'DELETE');
 client.registerMethod('deletenetwork', `${dh.url}/network/\${id}`, 'DELETE');
 client.registerMethod('addDeveloper', `${dh.url}/user/`, 'POST');
+client.registerMethod('updateMyDeveloperAccount', `${dh.url}/user/current`, 'PUT');
 
-function createDeveloper(developer, next) {
+function createDHUser(developer, next) {
   const data = { ...developer, role: 1, status: 2, data: {} };
   client.methods.addDeveloper({ data, headers }, function (result, res) {
+    next(result, res);
+  });
+}
+
+function loginDHUser(developer, next) {
+  client.methods.login({ data: { ...developer }, headers }, function (result, res) {
+    next(result, res);
+  });
+}
+
+function updateDHUser(token, developer, next) {
+  headers = { ...headers, Authorization: token };
+  client.methods.updateMyDeveloperAccount({ data: { ...developer }, headers }, function (result, res) {
     next(result, res);
   });
 }
@@ -173,4 +186,12 @@ auth((result) => {
   logger.info(result);
 });
 
-module.exports = { subscribe, unsubscribe, updateAllDeviceName, getMyDevices, createDeveloper };
+module.exports = {
+  subscribe,
+  unsubscribe,
+  updateAllDeviceName,
+  getMyDevices,
+  createDHUser,
+  loginDHUser,
+  updateDHUser,
+};

@@ -4,8 +4,29 @@ const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
 const { dhServices, userService } = require('../services');
 
+/*
+ * Developer account creation
+ */
 const createDeveloper = catchAsync((req, res) => {
-  dhServices.createDeveloper(req.body, function (data, response) {
+  dhServices.createDHUser(req.body, function (data, response) {
+    res.status(response.statusCode).send(data);
+  });
+});
+
+/*
+ * Developer Login
+ */
+const loginDeveloper = catchAsync((req, res) => {
+  dhServices.loginDHUser(req.body, function (data, response) {
+    res.status(response.statusCode).send(data);
+  });
+});
+
+/*
+ * Developer Change password
+ */
+const updateDeveloper = catchAsync((req, res) => {
+  dhServices.updateDHUser(req.headers.authorization, req.body, function (data, response) {
     res.status(response.statusCode).send(data);
   });
 });
@@ -37,6 +58,8 @@ const deleteUser = catchAsync(async (req, res) => {
 
 module.exports = {
   createDeveloper,
+  loginDeveloper,
+  updateDeveloper,
   getUsers,
   getUser,
   updateUser,
